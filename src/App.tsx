@@ -25,7 +25,7 @@ interface SigninInput {
 
 interface SigninResult {
     ok: boolean;
-    message: string
+    message: string;
 }
 
 const Signin = gql`
