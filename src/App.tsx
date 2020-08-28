@@ -1,24 +1,15 @@
-import React, { useState, createContext, useMemo } from "react";
-import Router from "./router";
-import { UserContextType } from "./types";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import Login from "./login";
+import Home from "./home";
+import { AuthenticatedRoute, RouteParams } from "./customRoute";
 
-// const defaultValue = {
-//     isAuth: false,
-// };
-
-export const UserContext = createContext<UserContextType>({
-    isAuth: false,
-    setIsAuth: (value) => {
-        return value;
-    },
-});
 const App: React.FC = () => {
-    const [isAuth, setIsAuth] = useState(false);
-    const providerValue = useMemo(() => ({ isAuth, setIsAuth }), [isAuth, setIsAuth]);
     return (
-        <UserContext.Provider value={providerValue}>
-            <Router />
-        </UserContext.Provider>
+        <Switch>
+            <Route path={RouteParams.login} exact component={Login} />
+            <AuthenticatedRoute path={RouteParams.home} component={Home} />
+        </Switch>
     );
 };
 

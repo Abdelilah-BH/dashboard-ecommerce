@@ -1,5 +1,6 @@
 export interface IUser {
-    isAuth: boolean;
+    ok: boolean;
+    message: string;
 }
 
 export interface UserContextType {
