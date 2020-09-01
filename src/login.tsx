@@ -1,17 +1,63 @@
 import React from "react";
-// import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-// import Button from "@material-ui/core/Button";
-// import LinearProgress from "@material-ui/core/LinearProgress";
-// import Alert from "@material-ui/lab/Alert";
-// import { Formik, FormikHelpers, Form, Field } from "formik";
-// import { TextField } from "formik-material-ui";
-import Box from "@material-ui/core/Box";
-// import { gql, useMutation } from "@apollo/client";
-// import { UserContext } from "./App";
-// import { IUser, SigninInput } from "./types";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Avatar from "@material-ui/core/Avatar";
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            height: "90vh",
+        },
+        form: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+        },
+        avatar_size: {
+            width: theme.spacing(10),
+            height: theme.spacing(10),
+        },
+        textField: {
+            margin: 5,
+        },
+    }),
+);
 
 const Login: React.FC = (): JSX.Element => {
-    return <Box>b</Box>;
+    const classes = useStyles();
+    return (
+        <Grid container className={classes.root}>
+            <Grid item xs={6} className={classes.form}>
+                <div>
+                    <img src="/ghff.png" width="100%" height="100%" />
+                </div>
+            </Grid>
+            <Grid item xs={6} className={classes.form}>
+                <div>
+                    <Avatar src="/broken-image.jpg" className={classes.avatar_size} />
+                </div>
+                <div>
+                    <h2>WELCOME</h2>
+                </div>
+                <div>
+                    <form method="POST" autoComplete="off">
+                        <TextField required id="email" label="Email" className={classes.textField} fullWidth />
+                        <TextField
+                            required
+                            id="password"
+                            label="Password"
+                            fullWidth
+                            type="password"
+                            className={classes.textField}
+                        />
+                    </form>
+                </div>
+            </Grid>
+        </Grid>
+    );
 };
 
 export default Login;
