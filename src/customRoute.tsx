@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 export enum RouteParams {
     home = "/",
-    login = "login",
+    login = "/login",
 }
 
 interface CustomRouteProps {
@@ -13,10 +13,5 @@ interface CustomRouteProps {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function AuthenticatedRoute({ component: Component, ...rest }: CustomRouteProps) {
-    return (
-        <Route
-            {...rest}
-            render={({ match: { params } }) => (false ? <Component {...params} /> : <Redirect to="/login" />)}
-        />
-    );
+    return <Route {...rest} render={() => (false ? <Component /> : <Redirect to="/login" />)} />;
 }
