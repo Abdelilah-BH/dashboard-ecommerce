@@ -1,8 +1,10 @@
 import React from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import LoginForm from "../components/forms/login";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -23,6 +25,12 @@ const useStyles = makeStyles((theme: Theme) =>
         textField: {
             margin: 5,
         },
+        btn_login: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80px",
+        },
     }),
 );
 
@@ -31,19 +39,20 @@ const Login: React.FC = (): JSX.Element => {
     return (
         <Grid container className={classes.root}>
             <Grid item xs={6} className={classes.form}>
-                <div>
-                    <img src="/ghff.png" width="100%" height="100%" />
-                </div>
+                <Box>
+                    <img src="/ghff.png" alt="..." width="100%" height="100%" />
+                </Box>
             </Grid>
             <Grid item xs={6} className={classes.form}>
-                <div>
+                <Box>
                     <Avatar src="/broken-image.jpg" className={classes.avatar_size} />
-                </div>
-                <div>
-                    <h2>WELCOME</h2>
-                </div>
-                <div>
-                    <form method="POST" autoComplete="off">
+                </Box>
+                <Box>
+                    <Typography variant="h3">WELCOME</Typography>
+                </Box>
+                <Box>
+                    <LoginForm />
+                    {/* <form method="POST" autoComplete="off">
                         <TextField required id="email" label="Email" className={classes.textField} fullWidth />
                         <TextField
                             required
@@ -53,8 +62,13 @@ const Login: React.FC = (): JSX.Element => {
                             type="password"
                             className={classes.textField}
                         />
-                    </form>
-                </div>
+                        <Box className={classes.btn_login}>
+                            <Button color="primary" variant="contained" fullWidth>
+                                Sign in
+                            </Button>
+                        </Box>
+                    </form> */}
+                </Box>
             </Grid>
         </Grid>
     );

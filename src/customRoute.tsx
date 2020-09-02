@@ -9,9 +9,13 @@ export enum RouteParams {
 interface CustomRouteProps {
     component: React.FC;
     path: RouteParams;
+    exact: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function AuthenticatedRoute({ component: Component, ...rest }: CustomRouteProps) {
-    return <Route {...rest} render={() => (false ? <Component /> : <Redirect to="/login" />)} />;
+export function AuthenticatedRoute({ component: Component, ...rest }: CustomRouteProps): JSX.Element {
+    return <Route {...rest} render={() => (true ? <Component /> : <Redirect to="/login" />)} />;
+}
+
+export function UnauthenticatedRoute({ component: Component, ...rest }: CustomRouteProps): JSX.Element {
+    return <Route {...rest} render={() => (false ? <Component /> : <Redirect to="/" />)} />;
 }
