@@ -13,9 +13,9 @@ interface CustomRouteProps {
 }
 
 export function AuthenticatedRoute({ component: Component, ...rest }: CustomRouteProps): JSX.Element {
-    return <Route {...rest} render={() => (true ? <Component /> : <Redirect to="/login" />)} />;
+    return <Route {...rest} render={() => (false ? <Component /> : <Redirect to="/" />)} />;
 }
 
 export function UnauthenticatedRoute({ component: Component, ...rest }: CustomRouteProps): JSX.Element {
-    return <Route {...rest} render={() => (false ? <Component /> : <Redirect to="/" />)} />;
+    return <Route {...rest} render={() => (true ? <Component /> : <Redirect to="/login" />)} />;
 }

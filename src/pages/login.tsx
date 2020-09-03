@@ -9,7 +9,7 @@ import LoginForm from "../components/forms/login";
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            height: "90vh",
+            height: "92vh",
         },
         form: {
             display: "flex",
@@ -52,22 +52,6 @@ const Login: React.FC = (): JSX.Element => {
                 </Box>
                 <Box>
                     <LoginForm />
-                    {/* <form method="POST" autoComplete="off">
-                        <TextField required id="email" label="Email" className={classes.textField} fullWidth />
-                        <TextField
-                            required
-                            id="password"
-                            label="Password"
-                            fullWidth
-                            type="password"
-                            className={classes.textField}
-                        />
-                        <Box className={classes.btn_login}>
-                            <Button color="primary" variant="contained" fullWidth>
-                                Sign in
-                            </Button>
-                        </Box>
-                    </form> */}
                 </Box>
             </Grid>
         </Grid>
