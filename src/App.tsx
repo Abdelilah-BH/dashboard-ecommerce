@@ -9,6 +9,12 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Switch from "@material-ui/core/Switch";
 import Divider from "@material-ui/core/Divider";
+import AuthContext from "./context/auth";
+
+const init_context = {
+    ok: false,
+    at: "",
+};
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -25,6 +31,11 @@ const App: React.FC = () => {
     const prefersDarkMode: string = JSON.stringify(localStorage.getItem("theme"));
     const classes = useStyles();
     const [darkMode, setDarkMode] = useState(JSON.parse(prefersDarkMode));
+    const [auth, setAuth] = useState(init_context);
+    const login = (data: { ok: boolean; at: string }) => {
+        setAuth(data);
+    };
+    const actions = { login };
     const theme = React.useMemo(
         () =>
             createMuiTheme({
@@ -50,28 +61,28 @@ const App: React.FC = () => {
         [darkMode],
     );
     return (
-        // <AuthContext.Provider>
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <div className={classes.switch}>
-                <label>Dark mode</label>
-                <Switch
-                    defaultChecked={darkMode === "dark" ? true : false}
-                    color="default"
-                    onChange={(e) => {
-                        const theme = e.target.checked ? "dark" : "light";
-                        localStorage.setItem("theme", theme);
-                        setDarkMode(theme);
-                    }}
-                />
-            </div>
-            <Divider />
-            <SwitchRoute>
-                <UnauthenticatedRoute path={RouteParams.login} exact component={Login} />
-                <AuthenticatedRoute path={RouteParams.home} exact component={Home} />
-            </SwitchRoute>
-        </ThemeProvider>
-        // </AuthContext.Provider>
+        <AuthContext.Provider value={{ authState: auth, authActions: actions }}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <div className={classes.switch}>
+                    <label>Dark mode</label>
+                    <Switch
+                        defaultChecked={darkMode === "dark" ? true : false}
+                        color="default"
+                        onChange={(e) => {
+                            const theme = e.target.checked ? "dark" : "light";
+                            localStorage.setItem("theme", theme);
+                            setDarkMode(theme);
+                        }}
+                    />
+                </div>
+                <Divider />
+                <SwitchRoute>
+                    <UnauthenticatedRoute path={RouteParams.login} exact component={Login} />
+                    <AuthenticatedRoute path={RouteParams.home} exact component={Home} />
+                </SwitchRoute>
+            </ThemeProvider>
+        </AuthContext.Provider>
     );
 };
 

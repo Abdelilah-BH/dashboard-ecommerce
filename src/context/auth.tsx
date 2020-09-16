@@ -5,18 +5,21 @@ interface IName {
     last: string;
 }
 
-interface IAuthContext {
-    at: string;
-    _id: string;
-    name: IName;
+export interface IAuthContext {
+    ok: boolean | string | undefined;
+    at: string | undefined;
 }
 
-const auth_context = createContext<IAuthContext>({
-    at: "",
-    _id: "",
-    name: {
-        first: "",
-        last: "",
+const auth_context = createContext({
+    authState: {
+        ok: false,
+        at: "",
+    },
+    authActions: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        login: (_: any) => {
+            //
+        },
     },
 });
 

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
+import AuthContext from "./context/auth";
 
 export enum RouteParams {
     home = "/",
@@ -13,9 +14,13 @@ interface CustomRouteProps {
 }
 
 export function AuthenticatedRoute({ component: Component, ...rest }: CustomRouteProps): JSX.Element {
-    return <Route {...rest} render={() => (false ? <Component /> : <Redirect to="/" />)} />;
+    const { authState } = useContext(AuthContext);
+    console.log({ authState });
+    return <Route {...rest} render={() => (authState.ok ? <Component /> : <Redirect to="/login" />)} />;
 }
 
 export function UnauthenticatedRoute({ component: Component, ...rest }: CustomRouteProps): JSX.Element {
-    return <Route {...rest} render={() => (true ? <Component /> : <Redirect to="/login" />)} />;
+    const { authState } = useContext(AuthContext);
+    console.log({ authState });
+    return <Route {...rest} render={() => (!authState.ok ? <Component /> : <Redirect to="/" />)} />;
 }

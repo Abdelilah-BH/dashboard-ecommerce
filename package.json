@@ -18,13 +18,14 @@
     "formik": "^2.1.5",
     "formik-material-ui": "^3.0.0-alpha.0",
     "graphql": "^15.3.0",
+    "notistack": "^1.0.0",
     "prettier": "^2.0.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dark-mode-toggle": "0.0.9",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "typescript": "^3.9.7"
   },
   "scripts": {

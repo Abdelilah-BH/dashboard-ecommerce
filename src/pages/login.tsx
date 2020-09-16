@@ -10,21 +10,23 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             height: "92vh",
+            padding: 16,
         },
-        form: {
+        login: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
         },
+        form: {
+            width: "100%",
+        },
         avatar_size: {
             width: theme.spacing(10),
             height: theme.spacing(10),
         },
-        textField: {
-            margin: 5,
-        },
+
         btn_login: {
             display: "flex",
             justifyContent: "center",
@@ -38,19 +40,19 @@ const Login: React.FC = (): JSX.Element => {
     const classes = useStyles();
     return (
         <Grid container className={classes.root}>
-            <Grid item xs={6} className={classes.form}>
+            <Grid item xs={6} className={classes.login}>
                 <Box>
                     <img src="/ghff.png" alt="..." width="100%" height="100%" />
                 </Box>
             </Grid>
-            <Grid item xs={6} className={classes.form}>
+            <Grid item xs={6} className={classes.login}>
                 <Box>
                     <Avatar src="/broken-image.jpg" className={classes.avatar_size} />
                 </Box>
                 <Box>
                     <Typography variant="h3">WELCOME</Typography>
                 </Box>
-                <Box>
+                <Box className={classes.form}>
                     <LoginForm />
                 </Box>
             </Grid>
